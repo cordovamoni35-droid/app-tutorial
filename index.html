@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial | Desarrollo Móvil - Guía Completa</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="logo">📱 <span>TUTORIAL</span> <small>Desarrollo Móvil</small></div>
+  <div class="header-actions">
+    <input type="search" id="buscador" placeholder="🔍 Buscar tema... Ej: Git, sensores...">
+    <button id="btnTema">🌙 Modo oscuro</button>
+    <button id="btnMenu">☰ Menú</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="menu-lateral" id="menuLateral">
+    <h3>📚 CONTENIDO</h3>
+    <nav>
+      <a href="#inicio" class="active">🏠 Inicio</a>
+      <a href="#control-versiones">1. Control de Versiones</a>
+      <a href="#persistencia">2. Persistencia y Datos</a>
+      <a href="#sensores">3. Gestión de Sensores</a>
+      <a href="#multimedia">4. Recursos Multimedia</a>
+      <a href="#servicios">5. Servicios y Notificaciones</a>
+      <a href="#librerias">6. Librerías y Toolkits</a>
+      <a href="#depuracion">7. Depuración y Seguridad</a>
+      <a href="#quiz">🎯 Quiz Final</a>
+      <a href="#referencias">📖 Referencias</a>
+    </nav>
+    <div class="progreso-box">
+      <p>Tu progreso</p>
+      <div class="barra"><div id="barraProgreso"></div></div>
+      <span id="textoProgreso">0% completado</span>
+      <button onclick="marcarTodo()">✅ Marcar todo como visto</button>
+    </div>
+  </aside>
+
+  <main class="contenido">
+    <section id="inicio" class="hero">
+      <span class="badge">GUÍA COMPLETA • HTML + CSS + JAVASCRIPT • ACTIVIDAD 12112026</span>
+      <h1>Aprende Desarrollo Móvil <br><span>desde cero, paso a paso</span></h1>
+      <p>Este tutorial desarrolla punto por punto los 7 temas pedidos en la actividad: control de versiones, persistencia, sensores, multimedia, servicios, librerías y depuración. Con definición, características, ventajas, desventajas, funcionamiento, ejemplos y videos.</p>
+      <div class="hero-btns"><a href="#control-versiones" class="btn-primario">Empezar ahora →</a><a href="#quiz" class="btn-secundario">Ir al Quiz</a></div>
+      <div class="stats"><div><b>7</b><span>Módulos</span></div><div><b>30+</b><span>Ejemplos</span></div><div><b>14</b><span>Videos</span></div><div><b>100%</b><span>Responsive</span></div></div>
+    </section>
+
+    <!-- ============ 1. CONTROL DE VERSIONES ============ -->
+    <section id="control-versiones" class="modulo">
+      <div class="modulo-head"><span>01</span><div><h2>Control de Versiones</h2><p>El historial inteligente de tu código</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 1.1 Definición de control de versiones</h3>
+      <p>El control de versiones es un sistema que <b>registra y gestiona todos los cambios que se hacen en los archivos de un proyecto a lo largo del tiempo</b>. Es como el historial de Word, pero mucho más poderoso: guarda quién hizo qué cambio, cuándo lo hizo, por qué lo hizo y permite regresar a cualquier versión anterior si algo sale mal.</p>
+      <p>Sin control de versiones, trabajarías guardando copias como <code>proyecto_final.zip, proyecto_final2.zip, proyecto_final_AHORA_SI.zip</code> y al final no sabrías cuál es la buena. Con control de versiones, todo queda ordenado y seguro.</p>
+      <h3>📌 1.2 ¿Cuáles son? Explicación de cada uno</h3>
+      <h4>🔵 A) Sistemas Locales</h4>
+      <p>El historial vive <b>solo en una computadora</b>. El programador guarda versiones en su propio disco. Ejemplo más simple: copiar la carpeta del proyecto y pegarla con otro nombre. Herramienta clásica: <b>RCS</b>.</p>
+      <h4>🟢 B) Sistemas Centralizados</h4>
+      <p>Hay <b>un servidor central</b> que guarda todo el historial y todos los programadores se conectan a él para bajar y subir cambios. Ejemplos: <b>CVS y Subversion (SVN)</b>. Todos dependen de ese servidor.</p>
+      <h4>🟣 C) Sistemas Distribuidos</h4>
+      <p><b>Cada programador tiene una copia COMPLETA del historial</b> en su computadora, no solo la última versión. Puede trabajar sin internet y luego sincronizar. Ejemplos: <b>Git, Mercurial</b>. Hoy es el estándar mundial.</p>
+      <h3>📌 1.3 Características, ventajas y desventajas de cada una</h3>
+      <table><tr><th>Tipo</th><th>Características</th><th>Ventajas</th><th>Desventajas</th></tr>
+      <tr><td><b>Local</b></td><td>Un solo usuario, sin servidor, sin red</td><td>Muy simple, no necesita internet, rápido de aprender</td><td>Si se daña la PC se pierde todo, no sirve para equipos, fácil equivocarse</td></tr>
+      <tr><td><b>Centralizado</b></td><td>Servidor central, control de acceso, historial único</td><td>El administrador controla todo, fácil de entender quién tiene qué</td><td>Si el servidor falla nadie trabaja, sin internet no puedes guardar, es más lento</td></tr>
+      <tr><td><b>Distribuido</b></td><td>Copia completa en cada equipo, ramas, trabajo sin conexión</td><td>Se trabaja sin internet, es rapidísimo, se puede experimentar con ramas, casi imposible perder todo</td><td>Al inicio es más difícil de aprender, ocupa más espacio</td></tr></table>
+      <h3>📌 1.4 Explica su funcionamiento</h3>
+      <p>Funciona en 4 pasos que se repiten siempre:</p>
+      <ol><li><b>Working Directory:</b> donde escribes tu código normal.</li><li><b>Staging Area:</b> con <code>git add</code> eliges qué cambios quieres guardar.</li><li><b>Commit:</b> con <code>git commit -m "mensaje"</code> tomas una foto de tu proyecto con un mensaje que explica qué hiciste.</li><li><b>Repositorio:</b> con <code>git push</code> subes esa foto a GitHub para que tu equipo la vea. Con <code>git pull</code> bajas los cambios de tus compañeros.</li></ol>
+      <p><b>Conceptos clave:</b> <b>Repositorio:</b> carpeta con proyecto + historial. <b>Rama (Branch):</b> línea de trabajo paralela para probar algo sin romper lo principal. <b>Merge:</b> unir una rama con otra. <b>Conflicto:</b> cuando dos personas cambian la misma línea y hay que decidir cuál queda.</p>
+      <h3>📌 1.5 Cómo se usa el control de versiones en el rastreo y gestión de cambios</h3>
+      <p><b>Rastreo:</b> Cada commit guarda fecha, autor, mensaje y exactamente qué líneas cambiaron. Si una app deja de funcionar, puedes ver: "Ah, el lunes Juan cambió esta línea y ahí se rompió". Puedes comparar dos versiones con <code>git diff</code> y ver línea por línea qué cambió.<br><b>Gestión:</b> Puedes crear una rama para cada función nueva (rama-login, rama-mapa), probar sin riesgo, y cuando ya funciona, la unes a la rama principal con un Merge. Si algo sale mal, haces <code>git revert</code> o <code>git reset</code> y regresas a la versión que sí funcionaba, sin perder todo el proyecto.</p>
+      <h3>📌 1.6 Ejemplos</h3>
+      <pre><code>git init
+git add .
+git commit -m "Primera versión de mi app"
+git branch nueva-funcion
+git checkout nueva-funcion
+git push origin main</code></pre>
+      <p><b>Ejemplo real:</b> En WhatsApp trabajan 100 programadores. Uno arregla los emojis, otro la cámara y otro los mensajes. Gracias a Git y sus ramas, ninguno borra el trabajo del otro y al final todo se une en una sola app.</p>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=que+es+git+y+github+tutorial+espa%C3%B1ol" target="_blank">▶ Ver tutorial de Git y GitHub</a><a href="https://git-scm.com/doc" target="_blank">📖 Documentación oficial de Git</a><a href="https://github.com" target="_blank">🌐 Ir a GitHub</a></div>
+    </section>
+
+    <!-- ============ 2. PERSISTENCIA ============ -->
+    <section id="persistencia" class="modulo">
+      <div class="modulo-head"><span>02</span><div><h2>Persistencia y Acceso a Datos</h2><p>Que tus datos no se borren al cerrar la app</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 2.1 Definición</h3>
+      <p>La persistencia es la capacidad de una aplicación de <b>guardar datos de forma permanente para que sigan existiendo aunque se cierre la app, se apague el celular o se reinicie el dispositivo</b>. Sin persistencia, cada vez que abrieras la app tendrías que volver a escribir tu nombre, tu contraseña y todo de nuevo. Es lo contrario a la memoria temporal (RAM), que se borra al apagar.</p>
+      <h3>📌 2.2 Características</h3>
+      <ul><li><b>Durabilidad:</b> los datos no se pierden.</li><li><b>Disponibilidad:</b> se pueden leer en cualquier momento.</li><li><b>Consistencia:</b> los datos guardados son los mismos que se leen.</li><li><b>Seguridad:</b> se pueden cifrar datos sensibles.</li><li><b>Eficiencia:</b> debe guardar y leer rápido sin gastar mucha batería.</li></ul>
+      <h3>📌 2.3 Formas de persistencia en dispositivos móviles</h3>
+      <p><b>A) Archivos:</b> Se guardan documentos tal cual: fotos, PDF, audios, videos, archivos TXT. En Android se guardan en almacenamiento interno o externo. <b>Ejemplo:</b> cuando descargas una foto de WhatsApp, queda guardada como archivo. <b>Ventaja:</b> simple y bueno para archivos grandes. <b>Desventaja:</b> difícil de buscar y ordenar.</p>
+      <p><b>B) Bases de datos locales:</b> Se guardan dentro del celular, no necesitan internet. La más usada es <b>SQLite</b>. <b>Ejemplo:</b> tus contactos, tus notas, tus tareas, el historial de mensajes. <b>Ventaja:</b> funciona sin internet, es rápida y ordenada. <b>Desventaja:</b> si desinstalas la app o cambias de celular, puedes perder los datos si no hay respaldo.</p>
+      <p><b>C) Bases de datos remotas mediante servicios web:</b> Los datos se guardan en un servidor en la nube y la app los pide por internet con una API. Ejemplos: <b>Firebase Firestore, MySQL en un servidor, Supabase</b>. <b>Ejemplo:</b> Instagram: tus fotos no están solo en tu celular, están en la nube y las ves en cualquier celular. <b>Ventaja:</b> se comparte entre dispositivos y no se pierde. <b>Desventaja:</b> necesita internet y es más lenta.</p>
+      <h3>📌 2.4 Tipos de datos almacenados en función de las formas de persistencia</h3>
+      <table><tr><th>Forma</th><th>Tipo de dato que guarda</th><th>Ejemplo</th></tr>
+      <tr><td>Preferencias (SharedPreferences / DataStore)</td><td>Datos pequeños de configuración</td><td>Idioma, modo oscuro, si ya vio el tutorial</td></tr>
+      <tr><td>Archivos</td><td>Datos no estructurados, grandes</td><td>Fotos, videos, PDF, audios</td></tr>
+      <tr><td>Base de datos local</td><td>Datos estructurados en tablas</td><td>Usuarios, productos, notas, mensajes</td></tr>
+      <tr><td>Base de datos remota</td><td>Datos compartidos en la nube</td><td>Perfil de Instagram, chats, pedidos de Rappi</td></tr>
+      <tr><td>Caché</td><td>Datos temporales para cargar rápido</td><td>Fotos que ya viste en TikTok</td></tr></table>
+      <h3>📌 2.5 Mecanismos de control de acceso a medios persistentes</h3>
+      <p><b>A) Biblioteca de clases:</b> Es un conjunto de clases ya programadas que te facilitan guardar y leer datos sin escribir todo desde cero. Ejemplo: en Android, la librería <b>Room</b> te da clases como <code>@Entity, @Dao, @Database</code> para trabajar la base de datos de forma fácil y segura.</p>
+      <p><b>B) Clases de SQLite:</b> Son las clases directas para usar la base de datos SQLite: <code>SQLiteOpenHelper</code> para crear y actualizar la base, y <code>SQLiteDatabase</code> para ejecutar <code>INSERT, SELECT, UPDATE, DELETE</code>. Es más manual pero te da control total. Es la base sobre la que trabaja Room.</p>
+      <p><b>C) Mapeo Relacional de Objetos (ORM):</b> Es una técnica que convierte las tablas de la base de datos en objetos de tu código. En vez de escribir SQL a mano, trabajas con objetos. Ejemplo: tienes una tabla <code>usuarios</code>, el ORM te crea un objeto <code>Usuario</code> con <code>usuario.nombre, usuario.correo</code>. Ejemplos de ORM: <b>Room en Android, Hibernate en Java, Entity Framework en C#</b>. Ventaja: escribes menos código y cometes menos errores.</p>
+      <h3>📌 2.6 Proceso de autenticación y consumo de servicios web en aplicaciones móviles</h3>
+      <ol><li>El usuario escribe correo y contraseña en la app.</li><li>La app envía esos datos <b>cifrados con HTTPS</b> al servidor (nunca en texto plano).</li><li>El servidor verifica en su base de datos si son correctos.</li><li>Si son correctos, el servidor responde con un <b>TOKEN</b> (una llave digital, como un pase VIP) y datos en formato JSON.</li><li>La app guarda ese token de forma segura.</li><li>En cada petición siguiente, la app manda el token en el encabezado: <code>Authorization: Bearer TU_TOKEN</code>.</li><li>El servidor revisa el token y si es válido, entrega los datos. Si venció, pide volver a iniciar sesión.</li></ol>
+      <p><b>Consumo:</b> Se hace con métodos HTTP: <b>GET</b> (pedir datos), <b>POST</b> (crear), <b>PUT</b> (actualizar), <b>DELETE</b> (borrar). Librerías para hacerlo: <b>Retrofit, Volley, HttpURLConnection</b>.</p>
+      <h3>📌 2.7 Ejemplos</h3>
+      <pre><code>// Ejemplo: pedir datos a una API con token
+fetch("https://api.ejemplo.com/usuarios", {
+  headers: { "Authorization": "Bearer TU_TOKEN" }
+})
+// Ejemplo SQL en SQLite
+SELECT * FROM notas WHERE favorita = 1;</code></pre>
+      <p><b>Ejemplo real:</b> Abres Instagram y no escribes tu contraseña cada vez. Instagram guardó tu token y así sabe que eres tú en cualquier celular.</p>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=sqlite+android+tutorial+espa%C3%B1ol" target="_blank">▶ Ver SQLite en Android</a><a href="https://firebase.google.com/docs" target="_blank">🔥 Documentación Firebase</a><a href="https://developer.android.com/training/data-storage/room" target="_blank">📖 Room - Android Developers</a></div>
+    </section>
+
+    <!-- ============ 3. SENSORES ============ -->
+    <section id="sensores" class="modulo">
+      <div class="modulo-head"><span>03</span><div><h2>Gestión de Sensores</h2><p>Tu celular siente el mundo</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 3.1 Definición de sensores</h3>
+      <p>Un sensor es un <b>componente físico (hardware) del celular que detecta una condición del mundo real</b> (movimiento, luz, ubicación, temperatura, huella) y <b>la convierte en una señal eléctrica o dato digital</b> que la aplicación puede leer y usar. Sin sensores, tu celular sería solo una pantalla: no sabría si lo giras, dónde estás o si hay poca luz.</p>
+      <h3>📌 3.2 Tipos de sensores en dispositivos móviles</h3>
+      <p><b>1. Sensores de movimiento:</b> <b>Acelerómetro:</b> detecta aceleración y movimiento, sirve para girar pantalla, contar pasos, detectar choques. <b>Giroscopio:</b> detecta rotación precisa, se usa en juegos y realidad aumentada. <b>Podómetro:</b> cuenta pasos.</p>
+      <p><b>2. Sensores ambientales:</b> <b>Luz:</b> ajusta el brillo de la pantalla. <b>Proximidad:</b> apaga la pantalla cuando te acercas el celular en una llamada. <b>Temperatura, Humedad y Presión barométrica:</b> apps de clima y salud.</p>
+      <p><b>3. Sensores de posición:</b> <b>GPS:</b> ubicación exacta con satélites, usado en Maps, Uber, Rappi. <b>Magnetómetro / Brújula:</b> sabe hacia dónde apuntas el celular. <b>Sensor de orientación:</b> combina varios sensores para saber la posición del celular.</p>
+      <p><b>4. Sensores biométricos y otros:</b> <b>Huella dactilar y Reconocimiento facial:</b> desbloqueo seguro. <b>Ritmo cardíaco y Oxígeno:</b> relojes y apps de salud. <b>Micrófono y Cámara:</b> también son sensores: detectan sonido e imagen.</p>
+      <h3>📌 3.3 Proceso de gestión de sensores: habilitación, obtención y procesamiento de información</h3>
+      <p><b>Paso 1 - Habilitación:</b> La app debe pedir permiso al usuario. Ejemplo: "¿Permitir que esta app acceda a tu ubicación?". En Android se hace con permisos en <code>AndroidManifest.xml</code> y en tiempo de ejecución. Si el usuario dice que no, la app no puede usar ese sensor. También se debe verificar si el celular tiene ese sensor, porque no todos tienen todos.</p>
+      <p><b>Paso 2 - Obtención de datos:</b> Se registra un "escuchador" (<code>SensorEventListener</code>) que recibe los datos del sensor cada cierto tiempo. Los datos llegan crudos, como números: Acelerómetro: X=0.5, Y=1.2, Z=9.8. GPS: Latitud 19.43, Longitud -99.13. Se debe elegir la velocidad de muestreo: rápida para juegos, lenta para ahorrar batería.</p>
+      <p><b>Paso 3 - Procesamiento de información:</b> La app convierte esos números en algo útil. Ejemplos: Si el acelerómetro detecta muchos movimientos rítmicos = estás caminando, suma un paso. Si el sensor de luz dice que hay poca luz = sube el brillo. Si el GPS dice que te moviste 100 metros = actualiza el mapa. Después se muestra el resultado al usuario y <b>se apaga el sensor cuando ya no se necesita</b> para ahorrar batería.</p>
+      <p><b>Ejemplo completo:</b> App de contar pasos: Habilita acelerómetro → Obtiene datos cada 100ms → Procesa: si hay un pico de movimiento = 1 paso → Muestra "Llevas 1,200 pasos".</p>
+      <button class="btn-demo" onclick="probarSensor()">📱 ¡PRUÉBALO! Detectar movimiento de tu celular</button>
+      <p id="resultadoSensor" class="demo-result">Mueve tu celular y presiona el botón...</p>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=sensores+android+studio+tutorial+espa%C3%B1ol" target="_blank">▶ Ver sensores en Android Studio</a><a href="https://developer.android.com/guide/topics/sensors/sensors_overview" target="_blank">📖 Sensores - Android Developers</a></div>
+    </section>
+
+    <!-- ============ 4. MULTIMEDIA ============ -->
+    <section id="multimedia" class="modulo">
+      <div class="modulo-head"><span>04</span><div><h2>Uso de Recursos Multimedia</h2><p>Imágenes, audio, video y animaciones</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 4.1 Definición</h3>
+      <p>Los recursos multimedia son <b>todos los elementos visuales y auditivos que hacen que una app sea atractiva, interactiva y fácil de entender</b>: imágenes, audios, videos, animaciones y elementos visuales dinámicos. Sin multimedia, una app sería solo texto aburrido. Con multimedia, una app se siente viva, profesional y divertida.</p>
+      <h3>📌 4.2 Tipos de recursos multimedia aplicables a la programación móvil</h3>
+      <p><b>Imágenes:</b> Fotos, iconos, fondos, logos. Formatos: JPG (fotos), PNG (con transparencia), WEBP (pesa menos, ideal para móvil). Ejemplo: foto de perfil, icono de WhatsApp.</p>
+      <p><b>Audio:</b> Música, efectos de sonido, notificaciones, notas de voz. Formatos: MP3, WAV, OGG. Ejemplo: sonido de mensaje, música de Spotify.</p>
+      <p><b>Video:</b> Tutoriales, reels, anuncios, clases. Formato: MP4. Ejemplo: videos de TikTok, YouTube.</p>
+      <p><b>Animaciones:</b> Movimientos que hacen la app más viva. Formatos: GIF, Lottie (animaciones vectoriales ligeras), animaciones XML. Ejemplo: corazón que late en Instagram, pantalla de carga que gira.</p>
+      <p><b>Elementos visuales dinámicos:</b> Elementos que cambian según lo que hace el usuario: botones que cambian de color, gráficas que se mueven, mapas interactivos, carruseles de fotos.</p>
+      <h3>📌 4.3 Elementos de la estructura de proyectos donde se almacenan los recursos multimedia</h3>
+      <p><b>En Android (Android Studio):</b> <code>res/drawable/</code> → imágenes e iconos. <code>res/raw/</code> → audio y video. <code>res/anim/</code> → animaciones XML. <code>assets/</code> → archivos que se leen tal cual.</p>
+      <p><b>En Flutter:</b> carpeta <code>assets/images/</code> y <code>assets/audios/</code>, y se declaran en <code>pubspec.yaml</code>.</p>
+      <p><b>En React Native / Web:</b> carpeta <code>assets/</code> o <code>public/</code>. <b>Regla de oro:</b> Siempre optimizar: las imágenes deben estar en varias resoluciones (mdpi, hdpi, xhdpi) y comprimidas para que la app no pese mucho ni gaste datos.</p>
+      <h3>📌 4.4 Componentes de software en el uso de recursos multimedia de aplicaciones móviles</h3>
+      <p><b>ImageView:</b> componente para mostrar imágenes en pantalla. <b>VideoView y ExoPlayer:</b> para reproducir video. ExoPlayer es el profesional usado por YouTube, soporta streaming y calidad adaptable. <b>MediaPlayer y SoundPool:</b> para audio. MediaPlayer para canciones largas, SoundPool para sonidos cortos como un clic. <b>CameraX / Camera2:</b> para tomar fotos y video desde la app. <b>Glide y Picasso:</b> librerías que bajan imágenes de internet, las recortan, las optimizan y las guardan en caché para que carguen rápido.</p>
+      <div class="demo-multimedia"><img src="https://picsum.photos/400/220" alt="Ejemplo multimedia"><div><h4>Ejemplo interactivo</h4><p>Esta imagen viene de internet. Así cargan las apps las fotos.</p><audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio></div></div>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=multimedia+en+apps+moviles+tutorial" target="_blank">▶ Ver multimedia en apps</a><a href="https://developer.android.com/guide/topics/media" target="_blank">📖 Multimedia - Android Developers</a></div>
+    </section>
+
+    <!-- ============ 5. SERVICIOS ============ -->
+    <section id="servicios" class="modulo">
+      <div class="modulo-head"><span>05</span><div><h2>Servicios y Notificaciones</h2><p>Tu app trabajando aunque no la veas</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 5.1 Definición</h3>
+      <p>Un <b>servicio</b> es un componente de la app que <b>realiza tareas en segundo plano sin necesidad de que el usuario tenga la app abierta ni vea una pantalla</b>. Las <b>notificaciones</b> son los <b>avisos que el sistema muestra al usuario</b> para informarle que algo pasó, aunque la app esté cerrada. Juntos hacen que la app se sienta viva: te avisa, descarga, sube y sincroniza sin que tú hagas nada.</p>
+      <h3>📌 5.2 Qué son las tareas en segundo plano en aplicaciones móviles</h3>
+      <p>Son tareas que se ejecutan mientras usas otra app o tienes el celular bloqueado. Ejemplos: <b>Reproducir música en Spotify</b> aunque estés en WhatsApp, <b>Descargar una película</b> mientras haces otra cosa, <b>Subir tus fotos a Google Fotos</b> automáticamente, <b>Rastrear tu ubicación mientras corres</b> con Strava, <b>Sincronizar mensajes de WhatsApp</b> aunque no tengas la app abierta. En Android se hacen con <b>Service, WorkManager y JobScheduler</b>. WorkManager es el recomendado hoy porque aunque apagues el celular, al prenderlo sigue la tarea.</p>
+      <h3>📌 5.3 Tratamiento de notificaciones en aplicaciones móviles</h3>
+      <p>El tratamiento es todo el ciclo de vida de una notificación:</p>
+      <ol><li><b>Permiso:</b> La app pide permiso: "¿Quieres recibir notificaciones?"</li><li><b>Creación:</b> Se crea la notificación con título, mensaje, icono y canal (en Android 8+ se usan canales: mensajes, promociones, etc.)</li><li><b>Envío:</b> Puede ser <b>Local</b> (la crea la misma app, Ej: "¡Toma agua!") o <b>Push / Remota</b> (viene de un servidor por internet, Ej: "Juan te envió un mensaje").</li><li><b>Visualización:</b> El sistema la muestra en la barra, pantalla de bloqueo o como burbuja.</li><li><b>Interacción:</b> El usuario la toca y la app se abre en la pantalla correcta, o la desliza para borrarla, o le da a "Responder" sin abrir la app.</li></ol>
+      <button class="btn-demo" onclick="lanzarNotificacion()">🔔 ¡PRUÉBALO! Enviarme una notificación de ejemplo</button>
+      <h3>📌 5.4 Proceso de implementación de: proveedores de contenido, tareas en segundo plano y notificaciones</h3>
+      <p><b>A) Proveedores de contenido (Content Providers):</b> Son componentes que permiten <b>compartir datos entre apps de forma segura y ordenada</b>. Ejemplo: tu app de contactos le comparte tus contactos a WhatsApp sin que WhatsApp entre directo a tu base de datos. Se implementa creando una clase que hereda de <code>ContentProvider</code> y definiendo una URI como <code>content://com.ejemplo.contactos</code>. Otras apps piden datos con <code>ContentResolver</code>.</p>
+      <p><b>B) Tareas en segundo plano:</b> Se implementa creando un <code>Service</code> o un <code>Worker</code> de WorkManager. Se define qué tarea hará, cuándo (cada 1 hora, solo con WiFi, solo cargando) y qué pasa si falla. Ejemplo: WorkManager sube tus fotos solo cuando tienes WiFi.</p>
+      <p><b>C) Notificaciones:</b> Se implementa creando un <b>canal de notificación</b>, luego un <code>NotificationCompat.Builder</code> con título, texto e icono, y se lanza con <code>NotificationManager</code>. Para notificaciones Push, se usa <b>Firebase Cloud Messaging (FCM)</b>: el servidor manda el mensaje a Firebase, Firebase lo manda al celular y el celular lo muestra.</p>
+      <h3>📌 5.5 Servicios de cómputo en la nube aplicables a la programación de aplicaciones móviles</h3>
+      <p>El cómputo en la nube es <b>usar computadoras y servicios de Google, Amazon o Microsoft por internet</b> para que hagan el trabajo pesado en vez de tu celular. Aplicaciones en móvil:</p>
+      <ul><li><b>Almacenamiento:</b> Google Drive, Firebase Storage para fotos y archivos.</li><li><b>Base de datos en la nube:</b> Firebase Firestore, Supabase, AWS DynamoDB.</li><li><b>Autenticación:</b> Login con Google, Facebook, correo con Firebase Auth.</li><li><b>Notificaciones:</b> Firebase Cloud Messaging (FCM).</li><li><b>Inteligencia Artificial:</b> Reconocer fotos, traducir, chatbots con Google Cloud AI.</li><li><b>Hosting y Funciones:</b> Firebase Hosting y Cloud Functions para correr código sin servidor propio.</li></ul>
+      <p><b>Ventajas:</b> No necesitas comprar un servidor, pagas solo lo que usas, funciona para millones de usuarios, es más seguro y siempre está disponible. <b>Ejemplos:</b> Firebase, AWS (Amazon Web Services), Google Cloud Platform, Microsoft Azure.</p>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=notificaciones+push+firebase+tutorial+espa%C3%B1ol" target="_blank">▶ Ver notificaciones push con Firebase</a><a href="https://firebase.google.com/docs/cloud-messaging" target="_blank">🔥 Firebase Cloud Messaging</a></div>
+    </section>
+
+    <!-- ============ 6. LIBRERIAS ============ -->
+    <section id="librerias" class="modulo">
+      <div class="modulo-head"><span>06</span><div><h2>Librerías y Toolkits para Desarrollo Móvil</h2><p>No reinventes la rueda, úsala</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 6.1 Qué es una librería y qué es un toolkit</h3>
+      <p><b>Librería:</b> Es un <b>conjunto de funciones, clases y código ya hecho</b> que tú puedes usar cuando quieras para resolver un problema específico. Tú tienes el control: tú decides cuándo llamarla. Es como un libro de recetas: tú eliges qué receta usar. Ejemplo: quieres hacer una gráfica bonita, usas la librería MPAndroidChart solo para eso.</p>
+      <p><b>Toolkit:</b> Es una <b>caja de herramientas completa</b> que incluye librerías, herramientas, documentación, emuladores y una estructura para construir algo completo. También se le llama <b>SDK (Software Development Kit) o Framework</b>. El toolkit te da las reglas y la estructura: tú sigues su forma de trabajar. Es como una cocina completa ya equipada: ya trae estufa, ollas, recetas y todo. Ejemplo: <b>Flutter, Android SDK, React Native, Xcode</b>.</p>
+      <h3>📌 6.2 Librerías de funciones especializadas para aplicaciones móviles</h3>
+      <table><tr><th>Librería</th><th>¿Para qué sirve?</th><th>Ejemplo de uso</th></tr>
+      <tr><td><b>Retrofit</b></td><td>Conectar con APIs de internet</td><td>Pedir el clima a una API</td></tr>
+      <tr><td><b>Room</b></td><td>Base de datos local fácil</td><td>Guardar notas sin internet</td></tr>
+      <tr><td><b>Glide / Picasso</b></td><td>Cargar imágenes de internet rápido</td><td>Fotos de perfil en Instagram</td></tr>
+      <tr><td><b>Firebase</b></td><td>Nube, login, notificaciones</td><td>Login con Google</td></tr>
+      <tr><td><b>MPAndroidChart</b></td><td>Gráficas bonitas</td><td>Gráfica de tus pasos</td></tr>
+      <tr><td><b>Lottie</b></td><td>Animaciones ligeras</td><td>Corazón que late</td></tr>
+      <tr><td><b>ZXing</b></td><td>Leer códigos QR y barras</td><td>Escanear QR de un menú</td></tr>
+      <tr><td><b>Google Maps SDK</b></td><td>Mapas en tu app</td><td>Mostrar tu ubicación</td></tr></table>
+      <h3>📌 6.3 Diferenciar toolkits aplicables a la programación de aplicaciones móviles</h3>
+      <table><tr><th>Toolkit</th><th>Lenguaje</th><th>¿Para qué sistema?</th><th>Característica</th></tr>
+      <tr><td><b>Android SDK</b></td><td>Kotlin / Java</td><td>Solo Android</td><td>El oficial de Google, máximo control</td></tr>
+      <tr><td><b>Xcode / iOS SDK</b></td><td>Swift</td><td>Solo iPhone</td><td>El oficial de Apple</td></tr>
+      <tr><td><b>Flutter</b></td><td>Dart</td><td>Android + iOS con un solo código</td><td>Muy rápido, diseño bonito, de Google</td></tr>
+      <tr><td><b>React Native</b></td><td>JavaScript</td><td>Android + iOS con un solo código</td><td>Usa JavaScript, lo usa Facebook / Meta</td></tr>
+      <tr><td><b>.NET MAUI</b></td><td>C#</td><td>Android + iOS + Windows</td><td>De Microsoft, para quienes saben C#</td></tr></table>
+      <p><b>Diferencia clave para el examen:</b> Librería = tú la controlas y la usas para una cosa. Toolkit = él te controla, te da toda la estructura para hacer una app completa.</p>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=flutter+vs+react+native+que+es+mejor" target="_blank">▶ Ver Flutter vs React Native</a><a href="https://flutter.dev" target="_blank">💙 Ir a Flutter</a><a href="https://reactnative.dev" target="_blank">⚛️ Ir a React Native</a></div>
+    </section>
+
+    <!-- ============ 7. DEPURACION ============ -->
+    <section id="depuracion" class="modulo">
+      <div class="modulo-head"><span>07</span><div><h2>Depuración y Seguridad</h2><p>Encuentra errores y protege tu app</p></div><label class="check"><input type="checkbox" class="visto"> Visto</label></div>
+      <h3>📌 7.1 Qué es la depuración y seguridad</h3>
+      <p><b>Depuración (Debug):</b> Es el proceso de <b>buscar, identificar y corregir errores (bugs) en el código</b> de una aplicación. Un bug puede ser que un botón no funcione, que la app se cierre de golpe (crash) o que un número salga mal. Depurar es como ser detective: revisas pistas, pruebas paso a paso y arreglas el problema.</p>
+      <p><b>Seguridad:</b> Es el conjunto de <b>medidas para proteger los datos del usuario y la app de ataques, robos y accesos no autorizados</b>. En móvil es vital porque el celular guarda fotos, contraseñas, ubicación, tarjetas y mensajes. Una app insegura puede robar todo eso.</p>
+      <h3>📌 7.2 Herramientas de depuración incluidas en el entorno de desarrollo móvil</h3>
+      <p><b>1. Logcat:</b> Ventana en Android Studio que muestra <b>todo lo que pasa en tu app en tiempo real</b> como un chat. Los errores salen en rojo, las advertencias en amarillo. Con <code>Log.d("MI_APP", "Aquí llegó")</code> puedes dejar mensajes para ver por dónde va tu código.</p>
+      <p><b>2. Breakpoints (Puntos de interrupción):</b> Pones un punto rojo en una línea y la app <b>se pausa ahí</b>. Puedes ver cuánto vale cada variable en ese momento y avanzar línea por línea con Step Over / Step Into. Es la herramienta más poderosa para entender por qué algo falla.</p>
+      <p><b>3. Emulador:</b> Un <b>celular virtual dentro de tu computadora</b> para probar tu app sin tener un celular físico. Puedes probar en diferentes marcas, tamaños y versiones de Android.</p>
+      <p><b>4. Android Profiler:</b> Herramienta que mide en tiempo real <b>cuánta CPU, memoria, batería y datos de internet usa tu app</b>. Si tu app gasta mucha batería, aquí lo descubres.</p>
+      <p><b>5. Layout Inspector / Inspector de diseño:</b> Te muestra <b>cómo está construida tu pantalla</b> capa por capa para ver por qué un botón quedó chueco, tapado o fuera de la pantalla.</p>
+      <p><b>6. App Inspection / Database Inspector:</b> Te deja <b>ver y editar la base de datos de tu app en vivo</b> sin tener que abrir archivos.</p>
+      <h3>📌 7.3 Seguridad en aplicaciones móviles - Buenas prácticas</h3>
+      <ul><li><b>Nunca guardes contraseñas en texto plano.</b> Siempre cifradas con hash.</li><li><b>Usa siempre HTTPS,</b> nunca HTTP, para que nadie espíe los datos.</li><li><b>Pide solo los permisos que necesitas.</b> Si tu app es de notas, no pidas cámara ni ubicación.</li><li><b>Cifra datos sensibles</b> como tarjetas, ubicación y mensajes.</li><li><b>No guardes claves secretas o tokens en el código.</b> Guárdalos en lugares seguros.</li><li><b>Actualiza tus librerías.</b> Las viejas tienen agujeros de seguridad que los hackers ya conocen.</li><li><b>Usa autenticación segura:</b> token + huella / cara.</li><li><b>Valida todo lo que escribe el usuario</b> para evitar inyecciones SQL.</li></ul>
+      <h3>📌 7.4 Amenazas comunes y Referencias</h3>
+      <p><b>Amenazas:</b> Robo de datos, apps falsas que roban contraseñas, WiFi público sin protección, permisos abusivos, código desactualizado. Para prevenirlas existe <b>OWASP Mobile Top 10</b>, la lista oficial de los 10 errores de seguridad más peligrosos en móvil.</p>
+      <div class="videos"><a href="https://www.youtube.com/results?search_query=como+depurar+en+android+studio+breakpoints+logcat" target="_blank">▶ Ver cómo depurar en Android Studio</a><a href="https://owasp.org/www-project-mobile-top-10/" target="_blank">🛡️ OWASP Top 10 Móvil</a></div>
+    </section>
+
+    <section id="quiz" class="modulo quiz-box">
+      <h2>🎯 Quiz Final - ¿Cuánto aprendiste?</h2>
+      <p id="preguntaQuiz">¿Qué herramienta se usa para el control de versiones distribuido?</p>
+      <div id="opcionesQuiz"></div>
+      <p id="resultadoQuiz"></p>
+      <button onclick="siguientePregunta()" class="btn-primario">Siguiente pregunta →</button>
+      <p>Tu puntaje: <b id="puntaje">0 / 10</b></p>
+    </section>
+
+    <section id="referencias" class="modulo">
+  <h2>📖 Referencias</h2>
+  <p class="nota-apa">Referencias en formato APA 7ª edición. Ordenadas alfabéticamente por apellido del autor o nombre de la organización.</p>
+  <ul class="lista-apa">
+    <li>Android Developers. (2024). <em>Guía de desarrollo de Android: Almacenamiento de datos y Room.</em> Google. https://developer.android.com/training/data-storage/room</li>
+    <li>Android Developers. (2024). <em>Guía de sensores: Descripción general de sensores.</em> Google. https://developer.android.com/guide/topics/sensors/sensors_overview</li>
+    <li>Android Developers. (2024). <em>Multimedia y gráficos en Android.</em> Google. https://developer.android.com/guide/topics/media</li>
+    <li>Chacon, S. y Straub, B. (2014). <em>Pro Git</em> (2ª ed.). Apress. https://git-scm.com/book/en/v2</li>
+    <li>Firebase. (2024). <em>Documentación de Firebase: Cloud Firestore, Authentication y Cloud Messaging.</em> Google. https://firebase.google.com/docs</li>
+    <li>Flutter. (2024). <em>Documentación oficial de Flutter.</em> Google. https://flutter.dev/docs</li>
+    <li>Meta Platforms. (2024). <em>Documentación oficial de React Native.</em> Meta. https://reactnative.dev/docs/getting-started</li>
+    <li>Mozilla Developer Network. (2024). <em>HTML, CSS y JavaScript: Guías para desarrollo web.</em> Mozilla Foundation. https://developer.mozilla.org/es/docs/Web</li>
+    <li>OWASP Foundation. (2024). <em>OWASP Mobile Top 10: Los 10 riesgos de seguridad más críticos en aplicaciones móviles.</em> OWASP. https://owasp.org/www-project-mobile-top-10/</li>
+    <li>Pressman, R. S. y Maxim, B. R. (2020). <em>Software engineering: A practitioner’s approach</em> (9ª ed.). McGraw-Hill Education.</li>
+    <li>Sommerville, I. (2016). <em>Software engineering</em> (10ª ed.). Pearson Education.</li>
+  </ul>
+  <p class="nota">Proyecto elaborado para la Actividad 12112026 - Tutorial Responsivo HTML, CSS y JavaScript. Estructura: Encabezado + Menú Lateral + Contenido Central + Barra Lateral + Pie de Página.</p>
+</section>
+  </main>
+  <aside class="sidebar-derecha">
+    <div class="mini-card"><h3>💡 ¿Sabías que...?</h3><p id="datoCurioso">El 90% de las apps usan Git para controlar sus versiones.</p><button onclick="cambiarDato()">Otro dato →</button></div>
+    <div class="mini-card"><h3>📌 Glosario rápido</h3><p><b>API:</b> Puente entre app y servidor.<br><b>Token:</b> Llave de acceso.<br><b>Bug:</b> Error en el código.<br><b>Commit:</b> Guardar un cambio en Git.<br><b>ORM:</b> Convertir tablas en objetos.<br><b>FCM:</b> Notificaciones de Firebase.</p></div>
+    <div class="mini-card video-card"><h3>🎬 Video recomendado</h3><a href="https://www.youtube.com/results?search_query=desarrollo+movil+desde+cero+tutorial+completo" target="_blank">▶ Ver curso completo de Desarrollo Móvil</a></div>
+  </aside>
+</div>
+<footer class="pie"><p><b>TUTORIAL - Desarrollo Móvil</b> | Hecho con HTML, CSS y JavaScript | Encabezado + Menú + Contenido + Sidebar + Pie de página</p><p>Actividad 12112026 • Proyecto Responsivo • © 2026</p></footer>
+<script src="js/script.js"></script>
+</body>
+</html>
